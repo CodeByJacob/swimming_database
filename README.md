@@ -1,5 +1,7 @@
 # PBD_Plywanie
 
+## Schema
+
 ![Diagram - model relacyjny](/images/diagram.png)
 
 ## Creators
