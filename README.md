@@ -1,6 +1,6 @@
 # PBD_Plywanie
 
-## Schema
+## Schema of the relation model
 
 ![Diagram - model relacyjny](/images/diagram.png)
 
