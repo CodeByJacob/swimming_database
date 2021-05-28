@@ -1,8 +1,16 @@
 
-DROP TABLE zawodnik_zawody;
-DROP TABLE konkurencja;
-DROP TABLE trener;
-DROP TABLE zawodnik;
-DROP TABLE zawody;
-DROP TABLE klubplywacki;
-DROP TABLE licencja;
+DROP TABLE IF EXISTS Zawodnik_Zawody;
+-- DROP TABLE IF EXISTS RekordOsobisty;
+-- DROP TABLE IF EXISTS Wynik;
+-- DROP TABLE IF EXISTS Etap;
+DROP TABLE IF EXISTS Konkurencja;
+-- DROP TABLE IF EXISTS Obiekt;
+DROP TABLE IF EXISTS Trener;
+-- DROP TABLE IF EXISTS Sedzia;
+DROP TABLE IF EXISTS Zawodnik;
+DROP TABLE IF EXISTS Zawody;
+DROP TABLE IF EXISTS Klubplywacki;
+DROP TABLE IF EXISTS Licencja;
+
+
+

@@ -187,11 +187,11 @@ CREATE TABLE IF NOT EXISTS Konkurencja (
 
 -- -------------------------------------------------------------
 -- SEDZIA
-
--- ALTER TABLE Sedzia
--- ADD CONSTRAINT FOREIGN KEY (ID_Licencji) REFERENCES Licencja(ID_Licencji);
+/*
+ALTER TABLE Sedzia
+ADD CONSTRAINT FOREIGN KEY (ID_Licencji) REFERENCES Licencja(ID_Licencji);
 -- -------------------------------------------------------------
-
+*/
 -- -------------------------------------------------------------
 -- TRENER
 
@@ -202,27 +202,27 @@ ADD CONSTRAINT FOREIGN KEY (ID_Licencji) REFERENCES Licencja(ID_Licencji);
 
 -- -------------------------------------------------------------
 -- WYNIK
-
--- ALTER TABLE Wynik
--- ADD CONSTRAINT FOREIGN KEY (ID_Etapu) REFERENCES Etap(ID_Etapu),
--- ADD CONSTRAINT FOREIGN KEY (ID_Zawodnika) REFERENCES Zawodnik(ID_Zawodnika);
+/*
+ALTER TABLE Wynik
+ADD CONSTRAINT FOREIGN KEY (ID_Etapu) REFERENCES Etap(ID_Etapu),
+ADD CONSTRAINT FOREIGN KEY (ID_Zawodnika) REFERENCES Zawodnik(ID_Zawodnika);
 -- -------------------------------------------------------------
 
 -- -------------------------------------------------------------
 -- ETAP
 
--- ALTER TABLE Etap
--- ADD CONSTRAINT FOREIGN KEY (ID_Konkurencji) REFERENCES Konkurencja(ID_Konkurencji),
+ALTER TABLE Etap
+ADD CONSTRAINT FOREIGN KEY (ID_Konkurencji) REFERENCES Konkurencja(ID_Konkurencji);
 -- -------------------------------------------------------------
 
 -- -------------------------------------------------------------
 -- REKORDOSOBISTY
 
--- ALTER TABLE RekordOsobisty
--- ADD CONSTRAINT FOREIGN KEY (ID_Konkurencji) REFERENCES Konkurencja(ID_Konkurencji),
--- ADD CONSTRAINT FOREIGN KEY (ID_Zawodnika) REFERENCES Zawodnik(ID_Zawodnika);
+ALTER TABLE RekordOsobisty
+ADD CONSTRAINT FOREIGN KEY (ID_Konkurencji) REFERENCES Konkurencja(ID_Konkurencji),
+ADD CONSTRAINT FOREIGN KEY (ID_Zawodnika) REFERENCES Zawodnik(ID_Zawodnika);
 -- -------------------------------------------------------------
-
+*/
 -- -------------------------------------------------------------
 -- ZAWODNIK
 
@@ -242,9 +242,12 @@ ADD CONSTRAINT FOREIGN KEY (ID_Zawodnika) REFERENCES Zawodnik(ID_Zawodnika);
 -- KONKURENCJA
 
 ALTER TABLE Konkurencja
-ADD CONSTRAINT FOREIGN KEY (ID_Zawodow) REFERENCES Zawody(ID_Zawodow); -- ,
--- ADD CONSTRAINT FOREIGN KEY (ID_Sedziego) REFERENCES Sedzia(ID_Sedziego),
--- ADD CONSTRAINT FOREIGN KEY (ID_Obiektu) REFERENCES Obiekt(ID_Obiekt)
+ADD CONSTRAINT FOREIGN KEY (ID_Zawodow) REFERENCES Zawody(ID_Zawodow);
+/*
+ADD CONSTRAINT FOREIGN KEY (ID_Sedziego) REFERENCES Sedzia(ID_Sedziego),
+ADD CONSTRAINT FOREIGN KEY (ID_Obiektu) REFERENCES Obiekt(ID_Obiektu);
+*/
 -- -------------------------------------------------------------
+
 
 -- -------------------------------------------------------------
