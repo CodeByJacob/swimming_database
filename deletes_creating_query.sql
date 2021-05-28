@@ -1,3 +1,4 @@
+
 DROP TABLE zawodnik_zawody;
 DROP TABLE konkurencja;
 DROP TABLE trener;

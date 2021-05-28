@@ -20,6 +20,13 @@
 -- -------------------------------------------------------------
 
 -- -------------------------------------------------------------
+--                        BAZA DANYCH
+-- -------------------------------------------------------------
+
+CREATE DATABASE IF NOT EXISTS pbd_plywanie CHARACTER SET utf8mb4 COLLATE utf8mb4_polish_ci;
+USE pbd_plywanie;
+
+-- -------------------------------------------------------------
 --                          TABELE
 -- -------------------------------------------------------------
 
@@ -27,7 +34,7 @@
 -- STRUKTURA TABELI REPREZENTUJACEJ KLUBPLYWACKI
 
 CREATE TABLE IF NOT EXISTS KlubPlywacki (
-  ID_Klubu INTEGER(5) AUTO_INCREMENT PRIMARY KEY NOT NULL ,
+  ID_Klubu INTEGER(5) AUTO_INCREMENT PRIMARY KEY NOT NULL,
   Nazwa VARCHAR(50) NOT NULL,
   Adres VARCHAR(50) NOT NULL,
   IloscCzlonkow INTEGER DEFAULT NULL,
@@ -63,7 +70,7 @@ CREATE TABLE IF NOT EXISTS Licencja (
 -- STRUKTURA TABELI REPREZENTUJACEJ TRENER
 
 CREATE TABLE IF NOT EXISTS Trener (
-  ID_Trenera INTEGER(5) AUTO_INCREMENT PRIMARY KEY NOT NULL ,
+  ID_Trenera INTEGER(5) AUTO_INCREMENT PRIMARY KEY NOT NULL,
   Imie VARCHAR(30)  NOT NULL,
   Nazwisko VARCHAR(40) NOT NULL,
   DataUrodzenia DATE NOT NULL,
@@ -99,7 +106,7 @@ CREATE TABLE IF NOT EXISTS Trener (
 -- STRUKTURA TABELI REPREZENTUJACEJ ZAWODY
 
 CREATE TABLE IF NOT EXISTS Zawody (
-    ID_Zawodow INTEGER(5) AUTO_INCREMENT PRIMARY KEY NOT NULL ,
+    ID_Zawodow INTEGER(5) AUTO_INCREMENT PRIMARY KEY NOT NULL,
     Miasto VARCHAR(50) NOT NULL,
     Kraj VARCHAR(50) NOT NULL,
     Rok YEAR NOT NULL,
@@ -117,7 +124,7 @@ CREATE TABLE IF NOT EXISTS Zawody (
 -- STRUKTURA TABELI REPREZENTUJACEJ ZAWODNIK
 
 CREATE TABLE IF NOT EXISTS Zawodnik (
-    ID_Zawodnika INTEGER(5) AUTO_INCREMENT PRIMARY KEY NOT NULL ,
+    ID_Zawodnika INTEGER(5) AUTO_INCREMENT PRIMARY KEY NOT NULL,
     Imie VARCHAR(30)  NOT NULL,
     Nazwisko VARCHAR(40) NOT NULL,
     DataUrodzenia DATE NOT NULL,
