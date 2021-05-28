@@ -48,7 +48,11 @@ CREATE TABLE IF NOT EXISTS KlubPlywacki (
 
 CREATE TABLE IF NOT EXISTS Licencja (
   ID_Licencji INTEGER(5) AUTO_INCREMENT PRIMARY KEY  NOT NULL,
-  DataWaznosciLicencji DATE NOT NULL
+  DataWaznosciLicencji DATE NOT NULL,
+  Typ ENUM(
+      'TRENER', -- LICENCJA TRENERSKA
+      'SEDZIA' -- LICENCJA TRENERSKA
+      )
 ) ENGINE = InnoDB;
 
 -- -------------------------------------------------------------
@@ -182,6 +186,13 @@ CREATE TABLE IF NOT EXISTS Konkurencja (
 -- -------------------------------------------------------------
 
 -- -------------------------------------------------------------
+-- SEDZIA
+
+-- ALTER TABLE Sedzia
+-- ADD CONSTRAINT FOREIGN KEY (ID_Licencji) REFERENCES Licencja(ID_Licencji);
+-- -------------------------------------------------------------
+
+-- -------------------------------------------------------------
 -- TRENER
 
 ALTER TABLE Trener
@@ -190,21 +201,50 @@ ADD CONSTRAINT FOREIGN KEY (ID_Licencji) REFERENCES Licencja(ID_Licencji);
 -- -------------------------------------------------------------
 
 -- -------------------------------------------------------------
--- KONKURENCJA
+-- WYNIK
 
-ALTER TABLE Konkurencja
-ADD CONSTRAINT FOREIGN KEY (ID_Zawodow) REFERENCES Zawody(ID_Zawodow) -- ,
--- ADD CONSTRAINT FOREIGN KEY (ID_Sedziego) REFERENCES Sedzia(ID_Sedziego),
--- ADD CONSTRAINT FOREIGN KEY (ID_Obiektu) REFERENCES Obiekt(ID_Obiekt)
-;
+-- ALTER TABLE Wynik
+-- ADD CONSTRAINT FOREIGN KEY (ID_Etapu) REFERENCES Etap(ID_Etapu),
+-- ADD CONSTRAINT FOREIGN KEY (ID_Zawodnika) REFERENCES Zawodnik(ID_Zawodnika);
 -- -------------------------------------------------------------
 
 -- -------------------------------------------------------------
--- Zawodnik_Zawody
+-- ETAP
+
+-- ALTER TABLE Etap
+-- ADD CONSTRAINT FOREIGN KEY (ID_Konkurencji) REFERENCES Konkurencja(ID_Konkurencji),
+-- -------------------------------------------------------------
+
+-- -------------------------------------------------------------
+-- REKORDOSOBISTY
+
+-- ALTER TABLE RekordOsobisty
+-- ADD CONSTRAINT FOREIGN KEY (ID_Konkurencji) REFERENCES Konkurencja(ID_Konkurencji),
+-- ADD CONSTRAINT FOREIGN KEY (ID_Zawodnika) REFERENCES Zawodnik(ID_Zawodnika);
+-- -------------------------------------------------------------
+
+-- -------------------------------------------------------------
+-- ZAWODNIK
+
+ALTER TABLE Zawodnik
+ADD CONSTRAINT FOREIGN KEY (ID_Klubu) REFERENCES KlubPlywacki(ID_Klubu);
+-- -------------------------------------------------------------
+
+-- -------------------------------------------------------------
+-- ZAWODNIK_ZAWODY
 
 ALTER TABLE Zawodnik_Zawody
 ADD CONSTRAINT FOREIGN KEY (ID_Zawodow) REFERENCES Zawody(ID_Zawodow),
 ADD CONSTRAINT FOREIGN KEY (ID_Zawodnika) REFERENCES Zawodnik(ID_Zawodnika);
+-- -------------------------------------------------------------
+
+-- -------------------------------------------------------------
+-- KONKURENCJA
+
+ALTER TABLE Konkurencja
+ADD CONSTRAINT FOREIGN KEY (ID_Zawodow) REFERENCES Zawody(ID_Zawodow); -- ,
+-- ADD CONSTRAINT FOREIGN KEY (ID_Sedziego) REFERENCES Sedzia(ID_Sedziego),
+-- ADD CONSTRAINT FOREIGN KEY (ID_Obiektu) REFERENCES Obiekt(ID_Obiekt)
 -- -------------------------------------------------------------
 
 -- -------------------------------------------------------------
