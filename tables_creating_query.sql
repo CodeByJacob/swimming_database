@@ -34,7 +34,7 @@ USE pbd_plywanie;
 -- STRUKTURA TABELI REPREZENTUJACEJ KLUBPLYWACKI
 
 CREATE TABLE IF NOT EXISTS KlubPlywacki (
-  ID_Klubu INTEGER(5) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  ID_Klubu INTEGER(5) AUTO_INCREMENT PRIMARY KEY NOT NULL ,
   Nazwa VARCHAR(50) NOT NULL,
   Adres VARCHAR(50) NOT NULL,
   IloscCzlonkow INTEGER DEFAULT NULL,
@@ -196,7 +196,7 @@ ADD CONSTRAINT FOREIGN KEY (ID_Licencji) REFERENCES Licencja(ID_Licencji);
 -- TRENER
 
 ALTER TABLE Trener
-ADD CONSTRAINT FOREIGN KEY (ID_Klubu) REFERENCES KlubPlywacki(ID_Klubu),
+ADD CONSTRAINT FOREIGN KEY (ID_Klubu) REFERENCES KlubPlywacki(ID_Klubu) ON DELETE SET NULL,
 ADD CONSTRAINT FOREIGN KEY (ID_Licencji) REFERENCES Licencja(ID_Licencji);
 -- -------------------------------------------------------------
 
@@ -227,7 +227,7 @@ ADD CONSTRAINT FOREIGN KEY (ID_Zawodnika) REFERENCES Zawodnik(ID_Zawodnika);
 -- ZAWODNIK
 
 ALTER TABLE Zawodnik
-ADD CONSTRAINT FOREIGN KEY (ID_Klubu) REFERENCES KlubPlywacki(ID_Klubu);
+ADD CONSTRAINT FOREIGN KEY (ID_Klubu) REFERENCES KlubPlywacki(ID_Klubu) ON DELETE SET NULL;
 -- -------------------------------------------------------------
 
 -- -------------------------------------------------------------
