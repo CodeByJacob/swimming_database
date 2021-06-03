@@ -37,12 +37,12 @@ BEGIN
 END//
 
 -- -------------------------------------------------------------
-
+-- TODO TE SAME WYZWALACZE TYLKO NA UPDATE'A ( TE NA DOLE )
 -- -------------------------------------------------------------
--- WYZWALACZ ZWIEKSZAJACY ILOSC CZLONKOW
+-- WYZWALACZE AKTUALIZUJACE ILOSC CZLONKOW
 
 DELIMITER //
-CREATE TRIGGER czlonkowie AFTER INSERT ON Zawodnik FOR EACH ROW
+CREATE TRIGGER CzlonkowieZawodnikADD AFTER INSERT ON Zawodnik FOR EACH ROW
 BEGIN
     SET @klub = (SELECT ID_Klubu FROM Zawodnik WHERE ID_Klubu = new.ID_Klubu);
     SET @ilosc = (SELECT IloscCzlonkow FROM klubplywacki WHERE klubplywacki.ID_Klubu = @klub);
@@ -51,3 +51,38 @@ BEGIN
 END//
 
 -- -------------------------------------------------------------
+
+DELIMITER //
+CREATE TRIGGER CzlonkowieZawodnikREMOVE AFTER INSERT ON Zawodnik FOR EACH ROW
+BEGIN
+    SET @klub = (SELECT ID_Klubu FROM Zawodnik WHERE ID_Klubu = new.ID_Klubu);
+    SET @ilosc = (SELECT IloscCzlonkow FROM klubplywacki WHERE klubplywacki.ID_Klubu = @klub);
+
+    UPDATE klubplywacki SET IloscCzlonkow = @ilosc - 1 WHERE ID_Klubu = @klub;
+END//
+
+-- -------------------------------------------------------------
+
+DELIMITER //
+CREATE TRIGGER CzlonkowieTrenerADD AFTER INSERT ON Trener FOR EACH ROW
+BEGIN
+    SET @klub = (SELECT ID_Klubu FROM Trener WHERE ID_Klubu = new.ID_Klubu);
+    SET @ilosc = (SELECT IloscCzlonkow FROM klubplywacki WHERE klubplywacki.ID_Klubu = @klub);
+
+    UPDATE klubplywacki SET IloscCzlonkow = @ilosc + 1 WHERE ID_Klubu = @klub;
+END//
+
+-- -------------------------------------------------------------
+
+DELIMITER //
+CREATE TRIGGER CzlonkowieTrenerREMOVE AFTER INSERT ON Trener FOR EACH ROW
+BEGIN
+    SET @klub = (SELECT ID_Klubu FROM Trener WHERE ID_Klubu = new.ID_Klubu);
+    SET @ilosc = (SELECT IloscCzlonkow FROM klubplywacki WHERE klubplywacki.ID_Klubu = @klub);
+
+    UPDATE klubplywacki SET IloscCzlonkow = @ilosc - 1 WHERE ID_Klubu = @klub;
+END//
+
+-- -------------------------------------------------------------
+
+-- TODO ZAWODNIKZAWODY - ZAWODY I/D
