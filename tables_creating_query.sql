@@ -91,18 +91,37 @@ CREATE TABLE IF NOT EXISTS Trener (
 -- -------------------------------------------------------------
 -- STRUKTURA TABELI REPREZENTUJACEJ WYNIK
 
+CREATE TABLE IF NOT EXISTS Wynik (
+    ID_Wynik INTEGER(5) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    Pozycja INTEGER NOT NULL,
+    Czas DECIMAL(4,3),
+    ID_Etapu INTEGER(5) NOT NULL,
+    ID_Zawodnika INTEGER(5) NOT NULL
+) ENGINE = InnoDb;
 
 -- -------------------------------------------------------------
 
 -- -------------------------------------------------------------
 -- STRUKTURA TABELI REPREZENTUJACEJ ETAP
 
+CREATE TABLE IF NOT EXISTS Etap (
+    ID_Etapu INTEGER(5) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    nrEtapu INTEGER NOT NULL,
+    ID_Konkurencji INTEGER(5) NOT NULL
+) ENGINE = InnoDb;
 
 -- -------------------------------------------------------------
 
 -- -------------------------------------------------------------
 -- STRUKTURA TABELI REPREZENTUJACEJ REKORDOSOBISTY
 
+CREATE TABLE IF NOT EXISTS RekordOsobisty (
+    ID_Rekordu INTEGER(5) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    DataWykonania DATE NOT NULL,
+    Czas DECIMAL(4,3) NOT NULL,
+    ID_Konkurencji INTEGER(5) NOT NULL,
+    ID_Zawodnika INTEGER(5) NOT NULL
+) ENGINE = InnoDb;
 
 -- -------------------------------------------------------------
 
@@ -202,7 +221,7 @@ ADD CONSTRAINT FOREIGN KEY (ID_Licencji) REFERENCES Licencja(ID_Licencji);
 
 -- -------------------------------------------------------------
 -- WYNIK
-/*
+
 ALTER TABLE Wynik
 ADD CONSTRAINT FOREIGN KEY (ID_Etapu) REFERENCES Etap(ID_Etapu),
 ADD CONSTRAINT FOREIGN KEY (ID_Zawodnika) REFERENCES Zawodnik(ID_Zawodnika);
@@ -222,7 +241,7 @@ ALTER TABLE RekordOsobisty
 ADD CONSTRAINT FOREIGN KEY (ID_Konkurencji) REFERENCES Konkurencja(ID_Konkurencji),
 ADD CONSTRAINT FOREIGN KEY (ID_Zawodnika) REFERENCES Zawodnik(ID_Zawodnika);
 -- -------------------------------------------------------------
-*/
+
 -- -------------------------------------------------------------
 -- ZAWODNIK
 
