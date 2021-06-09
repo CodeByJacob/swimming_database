@@ -42,7 +42,7 @@ CREATE TRIGGER NajlepszyCzasIN AFTER INSERT ON Wynik FOR EACH ROW
             WHERE k.ID_Konkurencji = @miejsce AND w.ID_Zawodnika = @zawodnik);
 
         IF @rekord IS NULL THEN
-            INSERT INTO rekordosobisty VALUES (@zawodnik,@miejsce,@rok,@rekord);
+            INSERT INTO rekordosobisty(id_zawodnika, id_konkurencji, datawykonania, czas) VALUES (@zawodnik,@miejsce,@rok,@rekord);
         ELSEIF @rekord < new.Czas THEN
              UPDATE rekordosobisty SET Czas = new.Czas WHERE ID_Zawodnika = @zawodnik AND ID_Konkurencji = @miejsce;
         END IF;
@@ -60,7 +60,7 @@ CREATE TRIGGER NajlepszyCzasUP AFTER UPDATE ON Wynik FOR EACH ROW
             WHERE k.ID_Konkurencji = @miejsce AND w.ID_Zawodnika = @zawodnik);
 
         IF @rekord IS NULL THEN
-            INSERT INTO rekordosobisty VALUES (@zawodnik,@miejsce,@rok,@rekord);
+            INSERT INTO rekordosobisty(id_zawodnika, id_konkurencji, datawykonania, czas) VALUES (@zawodnik,@miejsce,@rok,@rekord);
         ELSEIF @rekord < new.Czas THEN
              UPDATE rekordosobisty SET Czas = new.Czas WHERE ID_Zawodnika = @zawodnik AND ID_Konkurencji = @miejsce;
         END IF;
@@ -82,8 +82,15 @@ CREATE TRIGGER NajlepszyCzasDEL AFTER DELETE ON Rekordosobisty FOR EACH ROW
     END//
 DELIMITER ;
 
-# -------------------------------------------------------------
 
+# -------------------------------------------------------------
+-- WYZWALACZ USUWAJACY REKORDY ID Z TABLICY ZAWODY
+DELIMITER //
+CREATE TRIGGER ID_ZawodowZawodnikREMOVE BEFORE DELETE ON zawody FOR EACH ROW
+    BEGIN
+        DELETE FROM zawodnik_zawody WHERE ID_Zawodow = OLD.ID_Zawodow;
+    END//
+DELIMITER ;
 
 
 # -------------------------------------------------------------
@@ -135,6 +142,8 @@ DELIMITER ;
 #     END//
 # DELIMITER ;
 
--- -------------------------------------------------------------
+#-- -------------------------------------------------------------
 
--- TODO ZAWODNIKZAWODY - ZAWODY I/D
+
+#-- -------------------------------------------------------------
+
