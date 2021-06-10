@@ -81,20 +81,21 @@ CREATE TRIGGER NajlepszyCzasDEL AFTER DELETE ON Rekordosobisty FOR EACH ROW
 
     END//
 DELIMITER ;
-
+# -------------------------------------------------------------
 
 # -------------------------------------------------------------
--- WYZWALACZ USUWAJACY REKORDY ID Z TABLICY ZAWODY
+# WYZWALACZ USUWAJACY REKORDY ID Z TABLICY ZAWODY
+
 DELIMITER //
-CREATE TRIGGER ID_ZawodowZawodnikREMOVE BEFORE DELETE ON zawody FOR EACH ROW
+CREATE TRIGGER IDZawodowZawodnikREMOVE BEFORE DELETE ON zawody FOR EACH ROW
     BEGIN
         DELETE FROM zawodnik_zawody WHERE ID_Zawodow = OLD.ID_Zawodow;
     END//
 DELIMITER ;
-
+# -------------------------------------------------------------
 
 # -------------------------------------------------------------
--- WYZWALACZE AKTUALIZUJACE ILOSC CZLONKOW
+# WYZWALACZE AKTUALIZUJACE ILOSC CZLONKOW
 #
 # DELIMITER //
 # CREATE TRIGGER CzlonkowieZawodnikADD AFTER INSERT ON Zawodnik FOR EACH ROW
@@ -106,7 +107,7 @@ DELIMITER ;
 #     END//
 # DELIMITER ;
 #
-# -- -------------------------------------------------------------
+# -------------------------------------------------------------
 #
 # DELIMITER //
 # CREATE TRIGGER CzlonkowieZawodnikREMOVE AFTER INSERT ON Zawodnik FOR EACH ROW
@@ -118,7 +119,7 @@ DELIMITER ;
 #     END//
 # DELIMITER ;
 #
-# -- -------------------------------------------------------------
+# -------------------------------------------------------------
 #
 # DELIMITER //
 # CREATE TRIGGER CzlonkowieTrenerADD AFTER INSERT ON Trener FOR EACH ROW
@@ -130,7 +131,7 @@ DELIMITER ;
 #     END//
 # DELIMITER ;
 #
-# -- -------------------------------------------------------------
+# -------------------------------------------------------------
 #
 # DELIMITER //
 # CREATE TRIGGER CzlonkowieTrenerREMOVE AFTER INSERT ON Trener FOR EACH ROW
@@ -142,8 +143,6 @@ DELIMITER ;
 #     END//
 # DELIMITER ;
 
-#-- -------------------------------------------------------------
+# -------------------------------------------------------------
 
-
-#-- -------------------------------------------------------------
 

@@ -30,14 +30,14 @@ USE pbd_plywanie;
 #  FUNKCJE ZLICZAJACE CZLONKOW
 
 DELIMITER //
-CREATE FUNCTION zliczCzlonkowPoNazwie ( nazwaklubu VARCHAR(50))
+CREATE FUNCTION IF NOT EXISTS zliczCzlonkowPoNazwie ( nazwaklubu VARCHAR(50))
 RETURNS INT
 RETURN (SELECT COUNT(*) FROM trener NATURAL JOIN klubplywacki k WHERE k.Nazwa = nazwaklubu ) +
        (SELECT COUNT(*) FROM zawodnik NATURAL JOIN klubplywacki k WHERE k.Nazwa = nazwaklubu );
 DELIMITER ;
 
 DELIMITER //
-CREATE FUNCTION zliczCzlonkowPoID ( idklubu INT(5))
+CREATE FUNCTION IF NOT EXISTS zliczCzlonkowPoID ( idklubu INT(5))
 RETURNS INT
 RETURN (SELECT COUNT(*) FROM trener WHERE ID_Klubu = idklubu) +
        (SELECT COUNT(*) FROM zawodnik WHERE ID_Klubu = idklubu );
