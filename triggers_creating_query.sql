@@ -24,8 +24,53 @@ USE pbd_plywanie;
 -- -------------------------------------------------------------
 -- WYZWALACZE SPRAWDZAJĄCE LICENCJE
 
--- ?????
+DELIMITER //
+CREATE TRIGGER sprawdzenieLicencjiINSEDZIA AFTER INSERT ON Sedzia FOR EACH ROW
+BEGIN
+    SET @licencja = new.ID_Licencji;
+    SET @rodzaj = (SELECT typ FROM Licencja WHERE licencja.ID_Licencji = @licencja);
 
+    IF NOT @rodzaj = 'SEDZIA' THEN
+         UPDATE Sedzia SET ID_Licencji = NULL WHERE ID_Sedziego = new.ID_Sedziego;
+    END IF;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER sprawdzenieLicencjiINTRENER AFTER INSERT ON Trener FOR EACH ROW
+BEGIN
+    SET @licencja = new.ID_Licencji;
+    SET @rodzaj = (SELECT typ FROM Licencja WHERE licencja.ID_Licencji = @licencja);
+
+    IF NOT @rodzaj = 'TRENER' THEN
+         UPDATE Trener SET ID_Licencji = NULL WHERE ID_Trenera = new.ID_Trenera;
+    END IF;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER sprawdzenieLicencjiUPSEDZIA BEFORE UPDATE ON Sedzia FOR EACH ROW
+BEGIN
+    SET @licencja = new.ID_Licencji;
+    SET @rodzaj = (SELECT typ FROM Licencja WHERE licencja.ID_Licencji = @licencja);
+
+    IF NOT @rodzaj = 'SEDZIA' THEN
+         UPDATE Sedzia SET ID_Licencji = NULL WHERE ID_Sedziego = new.ID_Sedziego;
+    END IF;
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER sprawdzenieLicencjiUPTRENER BEFORE UPDATE ON Trener FOR EACH ROW
+BEGIN
+    SET @licencja = new.ID_Licencji;
+    SET @rodzaj = (SELECT typ FROM Licencja WHERE licencja.ID_Licencji = @licencja);
+
+    IF NOT @rodzaj = 'TRENER' THEN
+         UPDATE Trener SET ID_Licencji = NULL WHERE ID_Trenera = new.ID_Trenera;
+    END IF;
+END //
+DELIMITER ;
 -- -------------------------------------------------------------
 
 -- -------------------------------------------------------------
