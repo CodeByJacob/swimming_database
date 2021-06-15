@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS Obiekt (
     Miasto VARCHAR(50) NOT NULL,
     Powierzchnia DECIMAL(10,2),
     IloscTorow INTEGER NOT NULL,
-    RekordToru DECIMAL(4,3)
+    RekordToru DECIMAL(5,2)
 ) ENGINE = InnoDB;
 
 #  -------------------------------------------------------------
@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS Trener (
 CREATE TABLE IF NOT EXISTS Wynik (
     ID_Wynik INTEGER(5) AUTO_INCREMENT PRIMARY KEY NOT NULL,
     Pozycja INTEGER NOT NULL,
-    Czas DECIMAL(4,3),
+    Czas DECIMAL(5,2),
     ID_Etapu INTEGER(5) NOT NULL,
     ID_Zawodnika INTEGER(5) NOT NULL
 ) ENGINE = InnoDb;
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS RekordOsobisty (
     ID_Zawodnika INTEGER(5) NOT NULL,
     ID_Konkurencji INTEGER(5) NOT NULL,
     DataWykonania YEAR,
-    Czas DECIMAL(4,3) NOT NULL
+    Czas DECIMAL(5,2) NOT NULL
 ) ENGINE = InnoDb;
 
 #  -------------------------------------------------------------
