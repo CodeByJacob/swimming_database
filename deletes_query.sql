@@ -51,4 +51,12 @@ DROP FUNCTION IF EXISTS zliczCzlonkowPoNazwie;
 DROP TRIGGER IF EXISTS NajlepszyCzasIN;
 DROP TRIGGER IF EXISTS NajlepszyCzasDEL;
 DROP TRIGGER IF EXISTS IDZawodowZawodnikREMOVE;
+
+# --------------------------------------------------
+
+# --------------------------------------------------
+# DELETE PROCEDURE
+
+DROP PROCEDURE IF EXISTS ustawLicencje;
+
 # --------------------------------------------------
