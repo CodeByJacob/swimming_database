@@ -31,9 +31,10 @@ USE pbd_plywanie;
 DELIMITER //
 CREATE PROCEDURE ustawLicencje(IN persona INT(5), IN idLicencji INT(5), IN type ENUM('TRENER','SEDZIA'))
 BEGIN
-    DECLARE poprawneDane BOOLEAN DEFAULT FALSE;
     IF type = 'TRENER' THEN
-        SET poprawneDane = (SELECT TRUE IF EXISTS ( SELECT ID_Trenera FROM Trener WHERE ID_Trenera = persona));
+        UPDATE trener SET ID_Licencji = idLicencji WHERE ID_Trenera = persona;
+    ELSEIF type = 'SEDZIA' THEN
+        UPDATE sedzia SET ID_Licencji = idLicencji WHERE ID_Sedziego = persona;
     END IF;
 END //
 DELIMITER ;
