@@ -198,7 +198,7 @@ CREATE TABLE IF NOT EXISTS Konkurencja (
         'KLASYCZNY',
         'GRZBIETOWY',
         'MOTYLKOWY',
-        'DOWOLONY'
+        'DOWOLNY'
     ) NOT NULL,
     Dystans ENUM(
         '50M',
