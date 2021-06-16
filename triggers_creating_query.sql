@@ -28,12 +28,14 @@ DELIMITER //
 CREATE TRIGGER NajlepszyCzasIN AFTER INSERT ON Wynik FOR EACH ROW
     BEGIN
         SET @zawodnik = new.ID_Zawodnika;
-        SET @oldtime = (SELECT r.czas FROM rekordOsobisty r JOIN konkurencja k on k.ID_Konkurencji =
-            (SELECT kk.ID_Konkurencji FROM konkurencja kk JOIN etap e on r.ID_Konkurencji = e.ID_Konkurencji
-            WHERE e.ID_Etapu = new.ID_Etapu));
+        SET @konkurencja = (SELECT ID_Konkurencji FROM etap WHERE etap.ID_Etapu = new.ID_Etapu);
+        SET @aktualnyRekord = (SELECT czas FROM rekordosobisty WHERE ID_Zawodnika = @zawodnik AND ID_Konkurencji = @konkurencja );
 
-        IF(@oldtime > new.Czas) THEN
-            UPDATE rekordosobisty SET Czas = new.Czas, rekordosobisty.ID_Konkurencji = (SELECT ID_Konkurencji FROM etap WHERE etap.ID_Etapu = new.ID_Etapu);
+        IF @aktualnyRekord = NULL THEN
+            SET @rok = (SELECT rok FROM zawody JOIN konkurencja k on zawody.ID_Zawodow = k.ID_Zawodow WHERE ID_Konkurencji = @konkurencja);
+            INSERT INTO rekordosobisty(ID_Zawodnika, ID_Konkurencji, DataWykonania, Czas) VALUES (@zawodnik,@konkurencja,@rok,@aktualnyRekord);
+        ELSEIF @aktualnyRekord > new.Czas THEN
+            UPDATE rekordosobisty SET Czas = new.Czas WHERE ID_Zawodnika = @zawodnik AND ID_Konkurencji = @konkurencja;
         END IF;
     END//
 DELIMITER ;
