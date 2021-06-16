@@ -26,7 +26,6 @@ DROP FUNCTION IF EXISTS zliczCzlonkowPoNazwie;
 # DELETE TRIGGERS
 
 DROP TRIGGER IF EXISTS NajlepszyCzasIN;
-DROP TRIGGER IF EXISTS NajlepszyCzasUP;
 DROP TRIGGER IF EXISTS NajlepszyCzasDEL;
 DROP TRIGGER IF EXISTS IDZawodowZawodnikREMOVE;
 # --------------------------------------------------
