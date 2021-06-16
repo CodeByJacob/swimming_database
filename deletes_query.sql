@@ -1,3 +1,26 @@
+# -------------------------------------------------------------
+#       REALIZACJA PROJEKTU Z PRZEDMIOTU PODSTAWY BAZ DANYCH
+#               W ROKU AKADEMICKIM 2020/2021 SEMESTR IV
+#                           TEMAT PROJEKTU :
+#                              "PLYWANIE"
+# -------------------------------------------------------------
+#
+# REALIZUJACY PROJEKT :
+#
+# ALEKSANDRA BABIARSKA
+# MATEUSZ GOCAŁ
+# JAKUB SZOSTAK
+# JAKUB WOJTAŚ
+#
+# -------------------------------------------------------------
+# -------------------------------------------------------------
+#
+#                           USUWANIE
+#
+# -------------------------------------------------------------
+
+USE pbd_plywanie;
+
 # --------------------------------------------------
 # DELETE TABLES
 
